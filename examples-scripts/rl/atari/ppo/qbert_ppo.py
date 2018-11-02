@@ -15,7 +15,8 @@ from vel.rl.reinforcers.on_policy_iteration_reinforcer import (
     OnPolicyIterationReinforcer, OnPolicyIterationReinforcerSettings
 )
 
-from vel.rl.algo.policy_gradient.ppo import PpoPolicyGradient 
+from vel.schedules.linear import LinearSchedule
+from vel.rl.algo.policy_gradient.ppo import PpoPolicyGradient
 from vel.rl.env_roller.vec.step_env_roller import StepEnvRoller
 
 from vel.api.info import TrainingInfo, EpochInfo
@@ -41,6 +42,12 @@ def qbert_ppo():
         backbone=NatureCnnFactory(input_width=84, input_height=84, input_channels=4)
     ).instantiate(action_space=vec_env.action_space)
 
+    # Set schedule for gradient clipping.
+    cliprange = LinearSchedule(
+        initial_value=0.1,
+        final_value=0.0
+    )
+
     # Reinforcer - an object managing the learning process
     reinforcer = OnPolicyIterationReinforcer(
         device=device,
@@ -50,10 +57,11 @@ def qbert_ppo():
             experience_replay=4
         ),
         model=model,
-        algo=A2CPolicyGradient(
+        algo=PpoPolicyGradient(
             entropy_coefficient=0.01,
             value_coefficient=0.5,
-            max_grad_norm=0.5
+            max_grad_norm=0.5,
+            cliprange=cliprange
         ),
         env_roller=StepEnvRoller(
             environment=vec_env,
