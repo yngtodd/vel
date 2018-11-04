@@ -58,7 +58,7 @@ class EvaluateEnvCommand:
             actions = model.step(observation_tensor, **self.sample_args)['actions']
 
             observation, reward, done, epinfo = env_instance.step(actions.item())
-
+            #print(f'reward: {reward}, epinfo: {epinfo}')
             frames.append(env_instance.render('rgb_array'))
 
             if 'episode' in epinfo:
