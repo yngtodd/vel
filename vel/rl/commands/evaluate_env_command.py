@@ -63,6 +63,7 @@ class EvaluateEnvCommand:
 
             # What is episode in epinfo?
             if 'episode' in epinfo:
+                print(f"Epinfo[episode] {epinfo['episode']}")
                 # End of an episode
                 return epinfo['episode']
 
