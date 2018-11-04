@@ -61,6 +61,7 @@ class EvaluateEnvCommand:
 
             frames.append(env_instance.render('rgb_array'))
 
+            # What is episode in epinfo?
             if 'episode' in epinfo:
                 # End of an episode
                 return epinfo['episode']
