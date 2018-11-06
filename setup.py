@@ -33,8 +33,8 @@ setup(
         'scikit-learn',
         #'torch == 0.4.1',
         'torchvision',
-        'opencv-python',
-        'pillow-simd',
+        #'opencv-python',
+        #'pillow-simd',
         'tqdm'
     ],
     extras_require={
