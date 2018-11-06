@@ -32,7 +32,7 @@ setup(
         'pandas',
         'scikit-learn',
         #'torch == 0.4.1',
-        'torchvision',
+        #'torchvision',
         #'opencv-python',
         #'pillow-simd',
         'tqdm'
