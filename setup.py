@@ -34,7 +34,7 @@ setup(
         #'torch == 0.4.1',
         #'torchvision',
         #'opencv-python',
-        #'pillow-simd',
+        'pillow-simd',
         'tqdm'
     ],
     extras_require={
