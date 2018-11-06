@@ -31,7 +31,7 @@ setup(
         'numpy',
         'pandas',
         'scikit-learn',
-        'torch == 0.4.1',
+        #'torch == 0.4.1',
         'torchvision',
         'opencv-python',
         'pillow-simd',
