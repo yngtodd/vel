@@ -31,10 +31,10 @@ setup(
         'numpy',
         'pandas',
         'scikit-learn',
-        'torch == 0.4.1',
-        'torchvision',
-        'opencv-python',
-        'pillow-simd',
+        #'torch == 0.4.1',
+        #'torchvision',
+        #'opencv-python',
+        #'pillow-simd',
         'tqdm'
     ],
     extras_require={
