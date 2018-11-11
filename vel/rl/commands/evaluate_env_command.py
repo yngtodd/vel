@@ -29,6 +29,7 @@ class EvaluateEnvCommand:
 
         training_info = TrainingInfo(start_epoch_idx=self.storage.last_epoch_idx(), run_name=self.model_config.run_name)
         self.storage.resume(training_info, model)
+        print(f'Storage: {self.storage}')
 
         model.eval()
 
