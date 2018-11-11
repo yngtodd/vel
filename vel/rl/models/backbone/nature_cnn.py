@@ -73,12 +73,12 @@ class NatureCnn(LinearBackboneModel):
         """ Call proper initializers for the weights """
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
-                # init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='relu')
-                init.orthogonal_(m.weight, gain=np.sqrt(2))
+                init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='relu')
+                #init.orthogonal_(m.weight, gain=np.sqrt(2))
                 init.constant_(m.bias, 0.0)
             elif isinstance(m, nn.Linear):
-                # init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='relu')
-                init.orthogonal_(m.weight, gain=np.sqrt(2))
+                init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='relu')
+                #init.orthogonal_(m.weight, gain=np.sqrt(2))
                 init.constant_(m.bias, 0.0)
 
     def forward(self, image):
@@ -94,7 +94,7 @@ def create(input_width, input_height, input_channels=1, output_dim=512, kernel1=
     def instantiate(**_):
         return NatureCnn(
             input_width=input_width, input_height=input_height, input_channels=input_channels,
-            output_dim=output_dim, kernel1=kernel1, kernel2=kernel2, kernel3=kernel3 
+            output_dim=output_dim, kernel1=kernel1, kernel2=kernel2, kernel3=kernel3
         )
 
     return ModelFactory.generic(instantiate)
