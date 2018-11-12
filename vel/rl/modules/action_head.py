@@ -54,7 +54,8 @@ class DiagGaussianActionHead(nn.Module):
         return - (0.5 * ((z_score**2 + self.LOG2PI).sum(dim=-1)) + log_std.sum(dim=-1))
 
     def reset_weights(self):
-        init.orthogonal_(self.linear_layer.weight, gain=0.01)
+        init.kaiming_normal_(self.linear_layer.weight, mode='fan_out', nonlinearity='relu')
+        #init.orthogonal_(self.linear_layer.weight, gain=0.01)
         init.constant_(self.linear_layer.bias, 0.0)
 
     def entropy(self, params):
@@ -114,7 +115,8 @@ class CategoricalActionHead(nn.Module):
             return torch.argmax(logits - torch.log(-torch.log(u)), dim=-1)
 
     def reset_weights(self):
-        init.orthogonal_(self.linear_layer.weight, gain=0.01)
+        init.kaiming_normal_(self.linear_layer.weight, mode='fan_out', nonlinearity='relu')
+        #init.orthogonal_(self.linear_layer.weight, gain=0.01)
         init.constant_(self.linear_layer.bias, 0.0)
 
     def entropy(self, logits):
