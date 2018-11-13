@@ -1,4 +1,6 @@
 import torch
+import argparse
+
 import pandas as pd
 import numpy as np
 
@@ -31,9 +33,10 @@ def breakout_a2c_evaluate(checkpoint_file_path, takes=10):
     lengths = []
 
     for i in range(takes):
-        result = record_take(model, env, device)
+        result, eval_rewards = record_take(model, env, device)
         rewards.append(result['r'])
         lengths.append(result['l'])
+        print(f'Num rewards in evaluation: {len(eval_rewards)}')
 
     print(pd.DataFrame({'lengths': lengths, 'rewards': rewards}).describe())
 
@@ -47,20 +50,25 @@ def record_take(model, env_instance, device):
     frames.append(env_instance.render('rgb_array'))
 
     print("Evaluating environment...")
-
+    rewards = []
     while True:
         observation_array = np.expand_dims(np.array(observation), axis=0)
         observation_tensor = torch.from_numpy(observation_array).to(device)
         actions = model.step(observation_tensor, argmax_sampling=True)['actions']
-
+        
         observation, reward, done, epinfo = env_instance.step(actions.item())
+        rewards.append(reward)
 
         frames.append(env_instance.render('rgb_array'))
 
         if 'episode' in epinfo:
             # End of an episode
-            return epinfo['episode']
+            return epinfo['episode'], rewards
 
 
 if __name__ == '__main__':
-    breakout_a2c_evaluate("checkpoint_00001375.data", takes=2)
+    parser = argparse.ArgumentParser(description='Evaluate pretrained A2C model on Breakout')
+    parser.add_argument('--checkpoint', type=str, help='Path to model checkpoint.')
+    args = parser.parse_args()
+
+    breakout_a2c_evaluate(args.checkpoint, takes=5)
