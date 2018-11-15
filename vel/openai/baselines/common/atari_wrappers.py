@@ -105,7 +105,7 @@ class FireEpisodicLifeEnv(gym.Wrapper):
         # then update lives to handle bonus lives
         lives = self.env.unwrapped.ale.lives()
 
-        if lives < self.lives and lives > 0:
+        if self.lives > lives > 0:
             # for Qbert sometimes we stay in lives == 0 condtion for a few frames
             # so its important to keep lives > 0, so that we only reset once
             # the environment advertises done.
@@ -119,6 +119,16 @@ class FireEpisodicLifeEnv(gym.Wrapper):
 
         self.lives = lives
         return obs, reward, done, info
+
+    def reset(self, **kwargs):
+        self.env.reset(**kwargs)
+        obs, _, done, _ = self.env.step(1)
+        if done:
+            self.env.reset(**kwargs)
+        obs, _, done, _ = self.env.step(2)
+        if done:
+            self.env.reset(**kwargs)
+        return obs
 
 
 class MaxAndSkipEnv(gym.Wrapper):
