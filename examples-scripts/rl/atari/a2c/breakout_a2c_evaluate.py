@@ -31,12 +31,17 @@ def breakout_a2c_evaluate(checkpoint_file_path, takes=10):
 
     rewards = []
     lengths = []
+    all_rewards = []    
 
     for i in range(takes):
         result, eval_rewards = record_take(model, env, device)
         rewards.append(result['r'])
         lengths.append(result['l'])
         print(f'Num rewards in evaluation: {len(eval_rewards)}')
+        all_rewards.append(eval_rewards)
+ 
+    eval_results = pd.concat([pd.Series(x) for x in all_rewards], axis=1)
+    eval_results.to_csv('breakout_a2c.csv', index=False)
 
     print(pd.DataFrame({'lengths': lengths, 'rewards': rewards}).describe())
 
@@ -71,4 +76,4 @@ if __name__ == '__main__':
     parser.add_argument('--checkpoint', type=str, help='Path to model checkpoint.')
     args = parser.parse_args()
 
-    breakout_a2c_evaluate(args.checkpoint, takes=5)
+    breakout_a2c_evaluate(args.checkpoint, takes=50)
