@@ -24,7 +24,7 @@ from vel.rl.commands.rl_train_command import FrameTracker
 
 
 def qbert_ppo():
-    device = torch.device('cuda:0')
+    device = torch.device('cuda:3')
     seed = 1001
 
     # Set random seed in python std lib, numpy and pytorch
