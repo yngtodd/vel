@@ -23,7 +23,7 @@ from vel.api.info import TrainingInfo, EpochInfo
 
 
 def breakout_acer():
-    device = torch.device('cuda:0')
+    device = torch.device('cuda:2')
     seed = 1001
 
     # Set random seed in python std lib, numpy and pytorch
@@ -55,8 +55,7 @@ def breakout_acer():
             entropy_coefficient=0.01,
             q_coefficient=0.5,
             rho_cap=10.0,
-            retrace_rho_cap1.0,
-            max_grad_grad_norm=0.5
+            retrace_rho_cap=1.0,
         ),
         env_roller=StepEnvRoller(
             environment=vec_env,
