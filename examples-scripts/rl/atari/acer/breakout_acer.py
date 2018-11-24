@@ -11,19 +11,19 @@ from vel.rl.vecenv.subproc import SubprocVecEnvWrapper
 from vel.rl.models.policy_gradient_model import PolicyGradientModelFactory
 from vel.rl.models.backbone.nature_cnn import NatureCnnFactory
 
-
-from vel.rl.reinforcers.on_policy_iteration_reinforcer import (
-    OnPolicyIterationReinforcer, OnPolicyIterationReinforcerSettings
+from vel.rl.reinforcers.buffered_mixed_policy_iteration_reinforcer import (
+         BufferedMixedPolicyIterationReinforcer,
+         BufferedMixedPolicyIterationReinforcerSettings
 )
 
 from vel.rl.algo.policy_gradient.acer import AcerPolicyGradient
-from vel.rl.env_roller.vec.step_env_roller import StepEnvRoller
+from vel.rl.env_roller.vec.replay_q_env_roller import ReplayQEnvRoller
 
 from vel.api.info import TrainingInfo, EpochInfo
 
 
 def breakout_acer():
-    device = torch.device('cuda:2')
+    device = torch.device('cuda:1')
     seed = 1001
 
     # Set random seed in python std lib, numpy and pytorch
@@ -33,35 +33,41 @@ def breakout_acer():
     # These are just helper functions for that
     vec_env = SubprocVecEnvWrapper(
         ClassicAtariEnv('BreakoutNoFrameskip-v4'), frame_history=4
-    ).instantiate(parallel_envs=16, seed=seed)
+    ).instantiate(parallel_envs=12, seed=seed)
 
     # Again, use a helper to create a model
     # But because model is owned by the reinforcer, model should not be accessed using this variable
     # but from reinforcer.model property
     model = PolicyGradientModelFactory(
         backbone=NatureCnnFactory(input_width=84, input_height=84, input_channels=4)
-    ).instantiate(action_space=vec_env.action_space)
+    )
 
     # Reinforcer - an object managing the learning process
-    reinforcer = OnPolicyIterationReinforcer(
+    reinforcer = BufferedMixedPolicyIterationReinforcer(
         device=device,
-        settings=OnPolicyIterationReinforcerSettings(
+        env=vec_env,
+        settings=BufferedMixedPolicyIterationReinforcerSettings(
             discount_factor=0.99,
-            batch_size=256,
+            experience_replay=4,
+            stochastic_experience_replay=True
         ),
-        model=model,
+        model=model.instantiate(action_space=vec_env.action_space),
         algo=AcerPolicyGradient(
-            trust_region=True,
+            model_factory=model,
+            trust_region=False,
             entropy_coefficient=0.01,
             q_coefficient=0.5,
             rho_cap=10.0,
             retrace_rho_cap=1.0,
         ),
-        env_roller=StepEnvRoller(
+        env_roller=ReplayQEnvRoller(
             environment=vec_env,
             device=device,
-            number_of_steps=5,
-            discount_factor=0.99,
+            buffer_capacity=50000,
+            buffer_initial_size=10000,
+            frame_stack_compensation=4,
+            number_of_steps=20,
+            discount_factor=0.99
         )
     )
 
