@@ -72,6 +72,7 @@ class ReplayQEnvRoller(ReplayEnvRollerBase):
 
             actions_numpy = actions.detach().cpu().numpy()
             new_obs, new_rewards, new_dones, new_infos = self.environment.step(actions_numpy)
+            print(f'New observation: {new_obs}')
 
             # Store rollout in the experience replay buffer
             self.replay_buffer.store_transition(
