@@ -8,7 +8,7 @@ from vel.util.random import set_seed
 from vel.rl.env.classic_atari import ClassicAtariEnv
 from vel.rl.vecenv.subproc import SubprocVecEnvWrapper
 
-from vel.rl.models.policy_gradient_model import PolicyGradientModelFactory
+from vel.rl.models.q_policy_gradient_model import QPolicyGradientModelFactory
 from vel.rl.models.backbone.nature_cnn import NatureCnnFactory
 
 from vel.rl.reinforcers.buffered_mixed_policy_iteration_reinforcer import (
@@ -38,7 +38,7 @@ def breakout_acer():
     # Again, use a helper to create a model
     # But because model is owned by the reinforcer, model should not be accessed using this variable
     # but from reinforcer.model property
-    model = PolicyGradientModelFactory(
+    model = QPolicyGradientModelFactory(
         backbone=NatureCnnFactory(input_width=84, input_height=84, input_channels=4)
     )
 
@@ -65,7 +65,7 @@ def breakout_acer():
             device=device,
             buffer_capacity=50000,
             buffer_initial_size=10000,
-            frame_stack_compensation=4,
+            frame_stack_compensation=1,
             number_of_steps=20,
             discount_factor=0.99
         )
