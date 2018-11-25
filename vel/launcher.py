@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 import argparse
-import datetime as dtm
+import multiprocessing
 
-from vel.api import ModelConfig
-from vel.util.random import set_seed
+from vel.internals.model_config import ModelConfig
 from vel.internals.parser import Parser
 
 
@@ -24,6 +23,9 @@ def main():
     parser.add_argument(
         '--continue', action='store_true', default=False, help="Continue previously started learning process"
     )
+    parser.add_argument(
+        '--profile', type=str, default=None, help="Profiler output"
+    )
 
     args = parser.parse_args()
 
@@ -33,12 +35,31 @@ def main():
     )
 
     print(model_config)
+    multiprocessing_setting = model_config.provide_with_default('multiprocessing', default=None)
+
+    if multiprocessing_setting:
+        # This needs to be called before any of PyTorch module is imported
+        multiprocessing.set_start_method(multiprocessing_setting)
 
     # Set seed already in the launcher
+    from vel.util.random import set_seed
     set_seed(model_config.seed)
 
     model_config.banner(args.command)
-    model_config.run_command(args.command, args.varargs)
+
+    if args.profile:
+        print("[PROFILER] Running Vel in profiling mode, output filename={}".format(args.profile))
+        import cProfile
+        profiler = cProfile.Profile()
+        profiler.enable()
+        model_config.run_command(args.command, args.varargs)
+        profiler.disable()
+
+        profiler.dump_stats(args.profile)
+        profiler.print_stats(sort='tottime')
+    else:
+        model_config.run_command(args.command, args.varargs)
+
     model_config.quit_banner()
 
 
