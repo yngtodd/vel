@@ -1,4 +1,4 @@
-name: 'breakout_a2c'
+name: 'skopt_breakout_a2c_run5'
 
 env:
   name: vel.rl.env.classic_atari

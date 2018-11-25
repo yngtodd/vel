@@ -17,7 +17,8 @@ class QHead(nn.Module):
         self.action_space = action_space
 
     def reset_weights(self):
-        init.orthogonal_(self.linear_layer.weight, gain=1.0)
+        init.kaiming_normal_(self.linear_layer.weight)
+        #init.orthogonal_(self.linear_layer.weight, gain=1.0)
         init.constant_(self.linear_layer.bias, 0.0)
 
     def forward(self, input_data):
