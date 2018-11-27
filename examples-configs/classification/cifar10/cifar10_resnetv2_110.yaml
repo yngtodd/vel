@@ -2,7 +2,7 @@ name: 'cifar10_resnetv2_110'
 
 
 model:
-  name: vel.models.classic.cifar_resnet_v2
+  name: vel.models.vision.cifar_resnet_v2
   img_channels: 3
   num_classes: 10
 
@@ -10,7 +10,7 @@ model:
   blocks: [18, 18, 18] # ResNet110
 
 source:
-  name: vel.sources.classic.cifar10
+  name: vel.sources.vision.cifar10
   batch_size: 128
 #  batch_size: 32
   num_workers: 4

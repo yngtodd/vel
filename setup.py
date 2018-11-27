@@ -37,6 +37,7 @@ setup(
         'torchvision',
         #'opencv-python',
         #'pillow-simd',
+        'torchtext',
         'tqdm'
     ],
     extras_require={
@@ -44,7 +45,8 @@ setup(
         'mongo': ['pymongo', 'dnspython'],
         'gym': ['gym[atari,box2d,classic_control]'],
         'mujoco': ['gym[mujoco,robotics]'],
-        'dev': ['nose']
+        'dev': ['nose'],
+        'text': ['spacy']
     },
     entry_points={
         'console_scripts': [

@@ -2,7 +2,7 @@ name: 'cifar10_resnetv1_32'
 
 
 model:
-  name: vel.models.classic.cifar_resnext
+  name: vel.models.vision.cifar_resnext
   img_channels: 3
   num_classes: 10
 
@@ -14,7 +14,7 @@ model:
   cardinality: 8
 
 source:
-  name: vel.sources.classic.cifar10
+  name: vel.sources.vision.cifar10
   batch_size: 32
 #  batch_size: 32
   num_workers: 4
