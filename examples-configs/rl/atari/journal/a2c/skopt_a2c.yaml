@@ -1,4 +1,4 @@
-name: 'skopt_breakout_a2c_run5'
+name: 'skopt_breakout_a2c'
 
 env:
   name: vel.rl.env.classic_atari
@@ -21,15 +21,9 @@ model:
     input_width: 84
     input_height: 84
     input_channels: 4  # The same as frame_history
-<<<<<<< HEAD
-    kernel1: 8
-    kernel2: 4
-    kernel3: 3
-=======
     kernel1: 10 
     kernel2: 2  
     kernel3: 8 
->>>>>>> e641e3075b35205e128d362f03d608357237f75b
 
 
 reinforcer:
