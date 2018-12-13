@@ -1,0 +1,136 @@
+Logging to /home/ygx/src/vel/output/openai/hyperspace_breakout_a2c_worst/3
+----------------------------------
+| P01:episode_rewards | 0        |
+| P09:episode_rewards | 2        |
+| PMM:episode_rewards | 0.889    |
+| advantage_norm      | 5.12     |
+| episode_length      | 162      |
+| epoch_idx           | 1        |
+| explained_variance  | -2.99    |
+| fps                 | 568      |
+| frames              | 8000     |
+| grad_norm           | 33.7     |
+| policy_entropy      | 1.34     |
+| policy_loss         | 0.144    |
+| value_loss          | 1.01     |
+----------------------------------
+-----------------------------------
+| P01:episode_rewards | 0         |
+| P09:episode_rewards | 3         |
+| PMM:episode_rewards | 1.33      |
+| advantage_norm      | 0.742     |
+| episode_length      | 178       |
+| epoch_idx           | 2         |
+| explained_variance  | -5.28     |
+| fps                 | 335       |
+| frames              | 16000     |
+| grad_norm           | 0.0984    |
+| policy_entropy      | 1.38      |
+| policy_loss         | -0.000229 |
+| value_loss          | 0.00574   |
+-----------------------------------
+----------------------------------
+| P01:episode_rewards | 0        |
+| P09:episode_rewards | 3        |
+| PMM:episode_rewards | 1.39     |
+| advantage_norm      | 0.597    |
+| episode_length      | 182      |
+| epoch_idx           | 3        |
+| explained_variance  | -10.2    |
+| fps                 | 376      |
+| frames              | 24000    |
+| grad_norm           | 0.084    |
+| policy_entropy      | 1.38     |
+| policy_loss         | 0.000395 |
+| value_loss          | 0.00488  |
+----------------------------------
+-----------------------------------
+| P01:episode_rewards | 0         |
+| P09:episode_rewards | 3         |
+| PMM:episode_rewards | 1.15      |
+| advantage_norm      | 0.694     |
+| episode_length      | 174       |
+| epoch_idx           | 4         |
+| explained_variance  | -4.02     |
+| fps                 | 396       |
+| frames              | 32000     |
+| grad_norm           | 0.107     |
+| policy_entropy      | 1.37      |
+| policy_loss         | -0.000684 |
+| value_loss          | 0.00554   |
+-----------------------------------
+----------------------------------
+| P01:episode_rewards | 0        |
+| P09:episode_rewards | 3.1      |
+| PMM:episode_rewards | 1.23     |
+| advantage_norm      | 0.673    |
+| episode_length      | 177      |
+| epoch_idx           | 5        |
+| explained_variance  | -5.67    |
+| fps                 | 412      |
+| frames              | 40000    |
+| grad_norm           | 0.0838   |
+| policy_entropy      | 1.37     |
+| policy_loss         | 0.000546 |
+| value_loss          | 0.00556  |
+----------------------------------
+----------------------------------
+| P01:episode_rewards | 0        |
+| P09:episode_rewards | 3        |
+| PMM:episode_rewards | 1.18     |
+| advantage_norm      | 0.616    |
+| episode_length      | 176      |
+| epoch_idx           | 6        |
+| explained_variance  | -24.3    |
+| fps                 | 419      |
+| frames              | 48000    |
+| grad_norm           | 0.0796   |
+| policy_entropy      | 1.38     |
+| policy_loss         | 0.000944 |
+| value_loss          | 0.00467  |
+----------------------------------
+-----------------------------------
+| P01:episode_rewards | 0         |
+| P09:episode_rewards | 2         |
+| PMM:episode_rewards | 0.99      |
+| advantage_norm      | 0.585     |
+| episode_length      | 168       |
+| epoch_idx           | 7         |
+| explained_variance  | -8.56     |
+| fps                 | 422       |
+| frames              | 56000     |
+| grad_norm           | 0.0681    |
+| policy_entropy      | 1.39      |
+| policy_loss         | -0.000695 |
+| value_loss          | 0.00434   |
+-----------------------------------
+-----------------------------------
+| P01:episode_rewards | 0         |
+| P09:episode_rewards | 3         |
+| PMM:episode_rewards | 1.08      |
+| advantage_norm      | 0.77      |
+| episode_length      | 171       |
+| epoch_idx           | 8         |
+| explained_variance  | -2.63     |
+| fps                 | 422       |
+| frames              | 64000     |
+| grad_norm           | 0.0923    |
+| policy_entropy      | 1.38      |
+| policy_loss         | -0.000113 |
+| value_loss          | 0.00612   |
+-----------------------------------
+----------------------------------
+| P01:episode_rewards | 0        |
+| P09:episode_rewards | 3        |
+| PMM:episode_rewards | 1.33     |
+| advantage_norm      | 0.746    |
+| episode_length      | 182      |
+| epoch_idx           | 9        |
+| explained_variance  | -2.03    |
+| fps                 | 425      |
+| frames              | 72000    |
+| grad_norm           | 0.0745   |
+| policy_entropy      | 1.38     |
+| policy_loss         | 0.000612 |
+| value_loss          | 0.00595  |
+----------------------------------
