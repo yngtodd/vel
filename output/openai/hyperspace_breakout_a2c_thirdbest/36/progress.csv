@@ -1,0 +1,2 @@
+fps,P09:episode_rewards,policy_loss,policy_entropy,value_loss,episode_length,explained_variance,frames,epoch_idx,PMM:episode_rewards,advantage_norm,grad_norm,P01:episode_rewards
+181,3.6999999999999993,-0.03364577224980167,1.3001905113458634,0.10003102873633907,189.91176470588235,-2.1778488796949387,8000,1,1.588235294117647,2.3733256835490466,2.9164029464209573,0.0
