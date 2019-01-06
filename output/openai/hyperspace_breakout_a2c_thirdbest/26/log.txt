@@ -1,0 +1,16 @@
+Logging to /home/ygx/src/vel/output/openai/hyperspace_breakout_a2c_thirdbest/26
+----------------------------------
+| P01:episode_rewards | 0        |
+| P09:episode_rewards | 3        |
+| PMM:episode_rewards | 1.26     |
+| advantage_norm      | 1.85     |
+| episode_length      | 176      |
+| epoch_idx           | 1        |
+| explained_variance  | -1.66    |
+| fps                 | 190      |
+| frames              | 8000     |
+| grad_norm           | 2.05     |
+| policy_entropy      | 1.36     |
+| policy_loss         | 0.00198  |
+| value_loss          | 0.0468   |
+----------------------------------
