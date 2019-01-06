@@ -22,7 +22,7 @@ model:
     input_height: 84
     input_channels: 4  # The same as frame_history
     kernel1: 10 
-    kernel2: 2  
+    kernel2: 4  
     kernel3: 8 
 
 
