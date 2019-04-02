@@ -115,3 +115,5 @@ environment.yaml
 
 output/checkpoints/
 
+# Word embedding cache
+/.vector_cache
